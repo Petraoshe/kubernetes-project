@@ -1,0 +1,28 @@
+# - hosts: Workers
+#   become: yes
+#   gather_facts: yes
+
+#   tasks:
+#     - name: Generated token - 1.
+#       local_action: shell sed -n 82,83p /tmp/token > /tmp/workertoken
+      
+#     - name: Copy master token
+#       copy:
+#         src: /tmp/workertoken
+#         dest: /tmp/join-worker-command
+#         owner: root
+#         group: root
+#         mode: '0777'
+
+#     - name: Join Workers to Masters
+#       command: sh /tmp/join-worker-command
+   
+#     - name: Copy the file from ansible host to worker nodes
+#       copy: src=/home/ubuntu/config dest=/home/ubuntu
+
+#     - name: make directory and copy required file to it
+#       shell: |
+#         sudo su -c 'mkdir -p $HOME/.kube' ubuntu
+#         sudo su -c 'mv /home/ubuntu/config /home/ubuntu/.kube' ubuntu
+#         sudo su -c 'sudo chown $(id -u):$(id -g) $HOME/.kube/config' ubuntu
+    

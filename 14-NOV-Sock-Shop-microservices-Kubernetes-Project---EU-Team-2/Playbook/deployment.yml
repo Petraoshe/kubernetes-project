@@ -1,0 +1,13 @@
+# ---
+#  - hosts: Workers
+#    become: yes
+
+#    tasks:
+#     - name: Clone Application Repo
+#       shell: git clone https://github.com/microservices-demo/microservices-demo.git
+
+#     - name: Deploy application
+#       shell: sudo su -c 'kubectl create -f /home/ubuntu/microservices-demo/deploy/kubernetes/complete-demo.yaml' ubuntu
+#       args: 
+#         chdir: microservices-demo/deploy/kubernetes
+      

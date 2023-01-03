@@ -1,0 +1,32 @@
+# - hosts: Main-Master
+#   become: yes
+#   vars_files: 
+#     - /etc/ansible/ha-ip.yml
+
+#   tasks:
+    
+#     - name: Initialize Kubernetes on Master Node
+#       shell: |
+#         sudo systemctl restart containerd
+#         sudo kubeadm init --control-plane-endpoint {{ha_prv_ip}}:6443 --upload-certs --pod-network-cidr=192.168.0.0/16
+#       register: output
+
+#     - name: Storing Logs and Generated token for future purpose.
+#       local_action: copy content={{ output.stdout }} dest="/tmp/token" mode=0777
+    
+#     - name: make directory and copy required file to it
+#       shell: |
+#         sudo su -c 'mkdir -p $HOME/.kube' ubuntu
+#         sudo su -c 'sudo cp -f /etc/kubernetes/admin.conf $HOME/.kube/config' ubuntu
+#         sudo su -c 'sudo chown $(id -u):$(id -g) $HOME/.kube/config' ubuntu
+    
+#     - name: Fetch the config file from the main-master to ansible host
+#       run_once: yes
+#       fetch: src=/home/ubuntu/.kube/config dest=/home/ubuntu/ flat=yes
+
+#     # - name: Deploy Pod Network to Cluster
+#     #   become: yes
+#     #   shell: kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+#     #   args:
+#     #     chdir: $HOME
+        
